@@ -1,0 +1,28 @@
+@startuml
+
+:Architect: as A
+:Developer: as D
+:Tester:    as T
+:SCM:       as S
+
+(Model SOFTWARE ITEM's behavior as state machine) as case1
+(Check model) as case2
+(Generate code from model for framework X) as case3
+(Generate code from model for framework Y) as case3.1
+(Compare state machine versions) as case4
+(Verify executable model) as case5
+
+A-->case1
+D-->case1
+A-->case2
+D-->case2
+D-->case3
+D-->case3.1
+S-->case3
+S-->case3.1
+A-->case4
+D-->case4
+S-->case4
+T-->case5
+
+@enduml
