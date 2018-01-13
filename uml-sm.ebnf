@@ -1,0 +1,74 @@
+(* EBNF representation of UML 2.5 Behavior StateMachine *)
+(* Copyright 2018 Ryan Chaves *)
+
+file_input              = {state_machine}+ $
+                        ;
+state_machine           = 'stm' ID '{' {statement}+ '}'
+                        ;
+statement               = vertex
+                        | transition
+                        ;
+vertex                  = conn_point
+                        | pseudostate
+                        | state
+                        ;
+conn_point              = 'conn_point' ID
+                        ;
+pseudostate             = 'initial'
+                        | 'deepHistory' ID
+                        | 'shallowHistory' ID
+                        | join
+                        | fork
+                        | 'junction' ID
+                        | choice
+                        | entrypoint
+                        | exitpoint
+                        | 'terminate'
+                        ;
+join                    = 'join' ID '->' ID [EFFECT_EXPR]
+                        ;
+fork                    = 'fork' ID ['{' local_transition {local_transition}+ '}']
+                        ;
+choice                  = 'choice' ID ['{' {GUARD_EXPR '->' ID}+ '}']
+                        ;
+entrypoint              = 'entryPoint' ID '->' ID
+                        ;
+exitpoint               = 'exitPoint'  ID '->' ID
+                        ;
+state                   = 'state' ID ['{' {statement|region|behavior}+ '}']
+                        ;
+region                  = 'region' ID '{' {statement}+ '}'
+                        ;
+transition              = local_transition
+                        | external_transition
+                        | internal_transition
+                        ;
+behavior                = ID ':' internal_behavior
+                        ;
+(* TODO local transitions should support multiple triggers according to UML
+(see http://www.omg.org/spec/UML/2.5/PDF), though it's unclear how to do this
+ without a separating character *)
+local_transition        = 'initial' '->' ID [':' [ID] [GUARD_EXPR] [EFFECT_EXPR]]
+                        ;
+external_transition     = ID '->' ID [':' EXPR]
+                        ;
+internal_transition     = ID ':' EXPR
+                        ;
+internal_behavior       = BEHAVIOR_EXPR [EFFECT_EXPR]
+                        ;
+trigger                 = ID {',' ID}* [GUARD_EXPR] [EFFECT_EXPR]
+                        ;
+
+(* Tokens & Expressions *)
+ID                      = /\w(\w|\d)*/
+                        ;
+EXPR                    = /.+/
+                        ;
+GUARD_EXPR              = '[' EXPR ']'
+                        ;
+EFFECT_EXPR             = '/' EXPR
+                        ;
+BEHAVIOR_EXPR           = 'entry'
+                        | 'exit'
+                        | 'do'
+                        ;
