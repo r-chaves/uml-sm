@@ -1,0 +1,5 @@
+stm simple_machine
+{
+    initial -> A
+    A -> B : Foo
+}

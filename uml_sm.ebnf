@@ -1,0 +1,101 @@
+(* EBNF representation of UML 2.5 Behavior StateMachine *)
+(* Copyright 2018 Ryan Chaves *)
+
+(* Language keywords *)
+@@keyword               :: stm
+@@keyword               :: conn_point
+@@keyword               :: initial
+@@keyword               :: deepHistory
+@@keyword               :: shallowHistory
+@@keyword               :: join
+@@keyword               :: fork
+@@keyword               :: junction
+@@keyword               :: choice
+@@keyword               :: entryPoint
+@@keyword               :: exitPoint
+@@keyword               :: terminate
+@@keyword               :: state
+@@keyword               :: region
+@@keyword               :: finalState
+@@keyword               :: entry
+@@keyword               :: exit
+@@keyword               :: do
+
+(* Grammar *)
+file_input              = {state_machine}+ $
+                        ;
+state_machine           = 'stm' id '{' {statement}+ '}'
+                        ;
+statement               = vertex
+                        | transition
+                        ;
+vertex                  = conn_point
+                        | pseudostate
+                        | state
+                        | finalstate
+                        ;
+conn_point              = 'conn_point' id
+                        ;
+pseudostate             = 'deepHistory' id
+                        | 'shallowHistory' id
+                        | join
+                        | fork
+                        | 'junction' id
+                        | choice
+                        | entrypoint
+                        | exitpoint
+                        | 'terminate'
+                        ;
+join                    = 'join' id ['->' id [effect_decl]]
+                        ;
+fork                    = 'fork' id ['{' fork_transition {fork_transition}+ '}']
+                        ;
+fork_transition         = '->' id [effect_decl]
+                        ;
+choice                  = 'choice' id ['{' {choice_transition}+ '}']
+                        ;
+choice_transition       = guard_decl '->' id
+                        ;
+entrypoint              = 'entryPoint' id '->' id
+                        ;
+exitpoint               = 'exitPoint'  id ['->' id]
+                        ;
+state                   = 'state' id ['{' {statement|region|behavior}+ '}']
+                        ;
+finalstate              = 'finalState' id
+                        ;
+region                  = 'region' id '{' {statement}+ '}'
+                        ;
+transition              = local_transition
+                        | external_transition
+                        | internal_transition
+                        ;
+internal_transition     = trigger
+                        ;
+local_transition        = 'initial' '->' id [':' trigger]
+                        ;
+external_transition     = id '->' id [':' trigger]
+                        ;
+trigger                 = id {',' id}* [guard_decl] [effect_decl]
+                        ;
+behavior                = ('entry'|'exit'|'do') [effect_decl]
+                        ;
+
+(* Tokens & Expressions *)
+id                      = id_base {[id_region] [id_scope]}*
+                        ;
+id_region               = '[' id ']'
+                        ;
+id_scope                = '::' id
+                        ;
+@name
+id_base                 = /\w+/
+                        ;
+expr                    = /.+/
+                        ;
+guard_decl              = '[' guard_expr ']'
+                        ;
+guard_expr              = /[^\]\n]+/
+                        ;
+effect_decl             = '/' expr
+                        ;
