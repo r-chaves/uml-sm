@@ -54,7 +54,7 @@ fork_transition         = '->' id [effect_decl]
                         ;
 choice                  = 'choice' id ['{' {choice_transition}+ '}']
                         ;
-choice_transition       = guard_decl '->' id
+choice_transition       = '->' id '?' guard_decl
                         ;
 entrypoint              = 'entryPoint' id '->' id
                         ;
