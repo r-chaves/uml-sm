@@ -1,4 +1,9 @@
-"""Test of Tatsu.
+"""
+Test application using Tatsu.
+
+This application uses Tatsu to compile an input grammer into a model and then
+parse a file that (hopefully) obeys that grammar.
+
 $URL$
 """
 ##############################################################################
@@ -26,7 +31,6 @@ import json
 # Local imports
 ##############################################################################
 import tatsu
-from tatsu.util import asjson
 
 ##############################################################################
 # Global data
@@ -37,7 +41,8 @@ from tatsu.util import asjson
 ##############################################################################
 
 def main():
-    """Main script function.
+    """
+    Main script function.
     """
     with open(sys.argv[1], 'r') as grammar_file:
         grammar = grammar_file.read()
@@ -52,7 +57,7 @@ def main():
     print()
 
     print('JSON')
-    print(json.dumps(asjson(ast), indent=2))
+    print(json.dumps(tatsu.util.asjson(ast), indent=2))
     print()
 
 if __name__ == "__main__":
