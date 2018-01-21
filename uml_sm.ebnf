@@ -5,6 +5,7 @@
 @@keyword               :: stm
 @@keyword               :: conn_point
 @@keyword               :: initial
+@@keyword               :: final
 @@keyword               :: deepHistory
 @@keyword               :: shallowHistory
 @@keyword               :: join
@@ -16,7 +17,6 @@
 @@keyword               :: terminate
 @@keyword               :: state
 @@keyword               :: region
-@@keyword               :: finalState
 @@keyword               :: entry
 @@keyword               :: exit
 @@keyword               :: do
@@ -24,7 +24,7 @@
 (* Grammar *)
 file_input              = {state_machine}+ $
                         ;
-state_machine           = 'stm' id '{' {statement}+ '}'
+state_machine           = 'stm' id_base '{' {statement}+ '}'
                         ;
 statement               = vertex
                         | transition
@@ -32,9 +32,9 @@ statement               = vertex
 vertex                  = conn_point
                         | pseudostate
                         | state
-                        | finalstate
+                        | submachine
                         ;
-conn_point              = 'conn_point' id
+conn_point              = 'conn_point' ('entry'|'exit') id
                         ;
 pseudostate             = 'deepHistory' id
                         | 'shallowHistory' id
@@ -62,7 +62,7 @@ exitpoint               = 'exitPoint'  id ['->' id]
                         ;
 state                   = 'state' id ['{' {statement|region|behavior}+ '}']
                         ;
-finalstate              = 'finalState' id
+submachine              = 'submachine' id id
                         ;
 region                  = 'region' id '{' {statement}+ '}'
                         ;
@@ -72,7 +72,8 @@ transition              = local_transition
                         ;
 internal_transition     = trigger
                         ;
-local_transition        = 'initial' '->' id [':' trigger]
+local_transition        = 'initial' '->' id      [':' trigger]
+                        | id        '->' 'final' [':' trigger]
                         ;
 external_transition     = id '->' id [':' trigger]
                         ;
