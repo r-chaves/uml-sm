@@ -29,10 +29,9 @@ state_machine           = 'stm' id_base '{' {statement}+ '}'
 statement               = vertex
                         | transition
                         ;
-vertex                  = conn_point
-                        | pseudostate
+vertex                  = pseudostate
                         | state
-                        | submachine
+                        | submachine_state
                         ;
 conn_point              = 'conn_point' ('entry'|'exit') id
                         ;
@@ -60,11 +59,14 @@ entrypoint              = 'entryPoint' id '->' id
                         ;
 exitpoint               = 'exitPoint'  id ['->' id]
                         ;
-state                   = 'state' id ['{' {statement|region|behavior}+ '}']
-                        ;
-submachine              = 'submachine' id id
+state                   = 'state' state_name ['{' {statement|region|behavior}+ '}']
                         ;
 region                  = 'region' id '{' {statement}+ '}'
+                        ;
+submachine_state        = 'submachine' state_name submachine_name ['{' {conn_point_decl}+ '}']
+                        ;
+conn_point_decl         = 'entryPoint'  id_base
+                        | 'exitPoint'   id_base
                         ;
 transition              = local_transition
                         | external_transition
@@ -77,17 +79,26 @@ local_transition        = 'initial' '->' id      [':' trigger]
                         ;
 external_transition     = id '->' id [':' trigger]
                         ;
-trigger                 = id {',' id}* [guard_decl] [effect_decl]
+trigger                 = trigger_name {',' trigger_name}* [guard_decl] [effect_decl]
                         ;
 behavior                = ('entry'|'exit'|'do') [effect_decl]
                         ;
 
 (* Tokens & Expressions *)
 id                      = id_base {[id_region] [id_scope]}*
+                        | id_conn_point
                         ;
 id_region               = '[' id ']'
                         ;
 id_scope                = '::' id
+                        ;
+id_conn_point           = id '.' id_base
+                        ;
+state_name              = id_base
+                        ;
+submachine_name         = id_base
+                        ;
+trigger_name            = id_base
                         ;
 @name
 id_base                 = /\w+/
