@@ -1,0 +1,34 @@
+stm uml_figure_14_2
+{
+    state S
+    {
+        state S1
+        {
+            exit / xS1
+            exitPoint myexit -> T1::T111::myentry / t2
+
+            S11 -> myexit : sig / t1
+
+            state S11
+            {
+                exit / xS11
+            }
+        }
+
+        state T1
+        {
+            entry / eT1
+
+            state T11
+            {
+                entry / eT11
+                entryPoint myentry -> T111 / t3
+
+                state T111
+                {
+                    entry / eT111
+                }
+            }
+        }
+    }
+}

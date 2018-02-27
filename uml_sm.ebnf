@@ -1,5 +1,7 @@
 (* EBNF representation of UML 2.5 Behavior StateMachine *)
 (* Copyright 2018 Ryan Chaves *)
+@@grammar::UML_SM
+
 
 (* Language keywords *)
 @@keyword               :: stm
@@ -24,90 +26,87 @@
 (* Grammar *)
 file_input              = {state_machine}+ $
                         ;
-state_machine           = 'stm' id_base '{' {statement}+ '}'
+state_machine           = 'stm' stm_name:id_base '{' s:{statement}+ '}'
                         ;
-statement               = vertex
-                        | transition
+statement               = v:vertex
+                        | t:transition
                         ;
-vertex                  = pseudostate
-                        | state
-                        | submachine_state
+vertex                  = p:pseudostate
+                        | s:state
+                        | ss:submachine_state
                         ;
-conn_point              = 'conn_point' ('entry'|'exit') id
+conn_point              = 'conn_point' 'entry' entry_conn_point:id
+                        | 'conn_point' 'exit'  exit_conn_point:id
                         ;
-pseudostate             = 'deepHistory' id
-                        | 'shallowHistory' id
+pseudostate             = 'deepHistory' deepHistory:id
+                        | 'shallowHistory' shallowHistory:id
                         | join
                         | fork
-                        | 'junction' id
+                        | 'junction' junction:id
                         | choice
                         | entrypoint
                         | exitpoint
                         | 'terminate'
                         ;
-join                    = 'join' id ['->' id [effect_decl]]
+join                    = 'join' join:id ['->' target:id [effect_decl]]
                         ;
-fork                    = 'fork' id ['{' fork_transition {fork_transition}+ '}']
+fork                    = 'fork' fork:id ['{' fork_transition {fork_transition}+ '}']
                         ;
-fork_transition         = '->' id [effect_decl]
+fork_transition         = '->' target:id [effect_decl]
                         ;
-choice                  = 'choice' id ['{' {choice_transition}+ '}']
+choice                  = 'choice' choice:id ['{' {choice_transition}+ '}']
                         ;
-choice_transition       = '->' id '?' guard_decl
+choice_transition       = '->' target:id '?' guard_decl
                         ;
-entrypoint              = 'entryPoint' id '->' id
+entrypoint              = 'entryPoint' src:id '->' target:id [effect_decl]
+                        | 'entryPoint' src:id '->' target:id [guard_decl effect_decl]
                         ;
-exitpoint               = 'exitPoint'  id ['->' id]
+exitpoint               = 'exitPoint'  src:id ['->' target:id [effect_decl]]
+                        | 'exitPoint'  src:id ['->' target:id [guard_decl effect_decl]]
                         ;
-state                   = 'state' state_name ['{' {statement|region|behavior}+ '}']
+state                   = 'state' state:id_base ['{' {s:statement|r:region|b:behavior}+ '}']
                         ;
-region                  = 'region' id '{' {statement}+ '}'
+region                  = 'region' region:id_base '{' {s:statement}+ '}'
                         ;
-submachine_state        = 'submachine' state_name submachine_name ['{' {conn_point_decl}+ '}']
+submachine_state        = 'submachine' state:id_base submachine_name:id_base ['{' {c:conn_point_decl}+ '}']
                         ;
-conn_point_decl         = 'entryPoint'  id_base
-                        | 'exitPoint'   id_base
+conn_point_decl         = 'entryPoint' entryPoint:id_base
+                        | 'exitPoint'  exitPoint:id_base
                         ;
-transition              = local_transition
-                        | external_transition
-                        | internal_transition
+transition              = l:local_transition
+                        | e:external_transition
+                        | i:internal_transition
                         ;
-internal_transition     = trigger
+internal_transition     = t:trigger
                         ;
-local_transition        = 'initial' '->' id      [':' trigger]
-                        | id        '->' 'final' [':' trigger]
+local_transition        = src:'initial' '->' target:id      [':' trigger]
+                        | src:id        '->' target:'final' [':' trigger]
                         ;
-external_transition     = id '->' id [':' trigger]
+external_transition     = src:id '->' target:id [':' t:trigger]
                         ;
-trigger                 = trigger_name {',' trigger_name}* [guard_decl] [effect_decl]
+trigger                 = trigger:id_base {',' trigger:id_base}* [g:guard_decl] [e:effect_decl]
                         ;
 behavior                = ('entry'|'exit'|'do') [effect_decl]
                         ;
 
 (* Tokens & Expressions *)
-id                      = id_base {[id_region] [id_scope]}*
-                        | id_conn_point
+id                      = id_base {[r:id_region] [s:id_scope]}*
+                        | c:id_conn_point
                         ;
-id_region               = '[' id ']'
+id_region               = '[' id:id ']'
                         ;
-id_scope                = '::' id
+id_scope                = '::' id:id
                         ;
-id_conn_point           = id '.' id_base
-                        ;
-state_name              = id_base
-                        ;
-submachine_name         = id_base
-                        ;
-trigger_name            = id_base
+id_conn_point           = id:id '.' id_base
                         ;
 @name
 id_base                 = /\w+/
                         ;
 expr                    = /.+/
                         ;
-guard_decl              = '[' guard_expr ']'
+guard_decl              = '[' @:guard_expr ']'
                         ;
 guard_expr              = /[^\]\n]+/
                         ;
-effect_decl             = '/' expr
+effect_decl             = '/' @:expr
                         ;

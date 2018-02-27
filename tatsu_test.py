@@ -15,26 +15,23 @@ from __future__ import division, print_function, unicode_literals
 ##############################################################################
 # Module information
 ##############################################################################
-__copyright__   = "Ryan Chaves"
-__version__     = "$Rev$"
-__author__      = "$Author$"
-__date__        = "$Date$"
+# None
 
 ##############################################################################
 # Standard Python imports
 ##############################################################################
 import sys
-import pprint
-import json
+import tatsu
 
 ##############################################################################
 # Local imports
 ##############################################################################
-import tatsu
+# None
 
 ##############################################################################
 # Global data
 ##############################################################################
+# None
 
 ##############################################################################
 # Code and classes
@@ -51,14 +48,8 @@ def main():
         stm_desc = stm_file.read()
 
     model = tatsu.compile(grammar, trace=False)
-    ast = model.parse(stm_desc, trace=True, colorize=True)
-    print('PPRINT')
-    pprint.pprint(ast, indent=2, width=20)
-    print()
-
-    print('JSON')
-    print(json.dumps(tatsu.util.asjson(ast), indent=2))
-    print()
+    ast = model.parse(stm_desc, trace=False, colorize=True)
+    print(tatsu.util.asjsons(ast))
 
 if __name__ == "__main__":
     main()
