@@ -1,0 +1,128 @@
+{
+  "stm_name": "uml_figure_14_2",
+  "region_member": {
+    "region_member": [
+      {
+        "region_member": [
+          {
+            "fork": null,
+            "join": null,
+            "target": null,
+            "deepHistory": null,
+            "effect": null,
+            "choice": null,
+            "shallowHistory": null,
+            "entrypoint": null,
+            "junction": null,
+            "exitpoint": {
+              "src": "myexit",
+              "guard": null,
+              "target": {
+                "scope": {
+                  "scope": null,
+                  "region": null,
+                  "conn_point": "myentry",
+                  "name": "T111"
+                },
+                "region": null,
+                "conn_point": null,
+                "name": "T1"
+              },
+              "effect": "t2"
+            }
+          },
+          {
+            "internal_transition": null,
+            "external_transition": {
+              "src": {
+                "scope": null,
+                "region": null,
+                "conn_point": null,
+                "name": "S11"
+              },
+              "trigger": {
+                "guard": null,
+                "trigger": "sig",
+                "effect": "t1"
+              },
+              "target": {
+                "scope": null,
+                "region": null,
+                "conn_point": null,
+                "name": "myexit"
+              }
+            },
+            "local_transition": null
+          },
+          {
+            "region_member": null,
+            "state": "S11",
+            "region": null,
+            "behavior": {
+              "kind": "exit",
+              "effect": "xS11"
+            }
+          }
+        ],
+        "state": "S1",
+        "region": null,
+        "behavior": {
+          "kind": "exit",
+          "effect": "xS1"
+        }
+      },
+      {
+        "region_member": {
+          "region_member": [
+            {
+              "fork": null,
+              "join": null,
+              "target": null,
+              "deepHistory": null,
+              "effect": null,
+              "choice": null,
+              "shallowHistory": null,
+              "entrypoint": {
+                "src": "myentry",
+                "guard": null,
+                "target": {
+                  "scope": null,
+                  "region": null,
+                  "conn_point": null,
+                  "name": "T111"
+                },
+                "effect": "t3"
+              },
+              "junction": null,
+              "exitpoint": null
+            },
+            {
+              "region_member": null,
+              "state": "T111",
+              "region": null,
+              "behavior": {
+                "kind": "entry",
+                "effect": "eT111"
+              }
+            }
+          ],
+          "state": "T11",
+          "region": null,
+          "behavior": {
+            "kind": "entry",
+            "effect": "eT11"
+          }
+        },
+        "state": "T1",
+        "region": null,
+        "behavior": {
+          "kind": "entry",
+          "effect": "eT1"
+        }
+      }
+    ],
+    "state": "S",
+    "region": null,
+    "behavior": null
+  }
+}
