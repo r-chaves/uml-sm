@@ -56,11 +56,11 @@ fork_transition         = '->' target:id [effect:effect_decl]
                         ;
 choice_decl             = 'choice' ~ choice:id_base '{' {transition:choice_transition}+ '}'
                         ;
-choice_transition       = '->' target:id '?' guard:guard_decl
+choice_transition       = '->' target:id guard:guard_decl
                         ;
-entrypoint_decl         = 'entryPoint' ~ src:id_base ['->' target:id [['?' guard:guard_decl] effect:effect_decl]]
+entrypoint_decl         = 'entryPoint' ~ src:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
                         ;
-exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [['?' guard:guard_decl] effect:effect_decl]]
+exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
                         ;
 state                   = 'state' ~ state:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
                         ;
@@ -75,20 +75,24 @@ transition              = local_transition:local_transition
                         | external_transition:external_transition
                         | internal_transition:internal_transition
                         ;
-internal_transition     = trigger:trigger
+internal_transition     = trigger_decl
                         ;
-local_transition        = src:'initial' ~ '->' target:id        [':' trigger:trigger]
-                        | src:id          '->' target:'final' ~ [':' trigger:trigger]
+local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger_decl]
+                        | src:id          '->' target:'final' ~ [trigger:trigger_decl]
                         ;
-external_transition     = src:id '->' target:id [':' trigger:trigger]
+external_transition     = src:id '->' target:id [trigger:trigger_decl]
                         ;
-trigger                 = trigger:id_base {',' trigger:id_base}* [guard:guard_decl] [effect:effect_decl]
+trigger_decl            = ':' trigger:id_base {',' trigger:id_base}* [guard:guard_decl] [effect:effect_decl]
                         ;
 behavior                = kind:('entry'|'exit'|'doActivity') ~ effect:effect_decl
                         ;
+guard_decl              = '?' '[' @:guard_expr ']'
+                        ;
+effect_decl             = '/' @:expr
+                        ;
 
 (* Tokens & Expressions *)
-id                      = id:id_base {region:id_region|scope:id_scope|conn_point:id_conn_point}*
+id                      = name:id_base {region:id_region|scope:id_scope|conn_point:id_conn_point}*
                         ;
 id_region               = '[' @:id ']'
                         ;
@@ -101,9 +105,5 @@ id_base                 = /\w+/
                         ;
 expr                    = /.+/
                         ;
-guard_decl              = '[' @:guard_expr ']'
-                        ;
 guard_expr              = /[^\]\n]+/
-                        ;
-effect_decl             = '/' @:expr
                         ;
