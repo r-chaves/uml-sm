@@ -24,73 +24,73 @@
 @@keyword               :: do
 
 (* Grammar *)
-file_input              = {state_machine}+ $
+file_input              = state_machine $
                         ;
-state_machine           = 'stm' stm_name:id_base '{' s:{statement}+ '}'
+state_machine           = 'stm' ~ stm_name:id_base '{' {region_member:region_member}+ '}'
                         ;
-statement               = v:vertex
-                        | t:transition
+region_member           = vertex
+                        | transition
+                        | fork_decl
+                        | choice_decl
                         ;
-vertex                  = p:pseudostate
-                        | s:state
-                        | ss:submachine_state
+vertex                  = pseudostate
+                        | state
+                        | submachine_state
                         ;
-conn_point              = 'conn_point' 'entry' entry_conn_point:id
-                        | 'conn_point' 'exit'  exit_conn_point:id
+conn_point              = 'conn_point' 'entry' entry_conn_point:id_base
+                        | 'conn_point' 'exit'  exit_conn_point:id_base
                         ;
-pseudostate             = 'deepHistory' deepHistory:id
-                        | 'shallowHistory' shallowHistory:id
-                        | join
-                        | fork
-                        | 'junction' junction:id
-                        | choice
-                        | entrypoint
-                        | exitpoint
+pseudostate             = 'deepHistory'     ~ deepHistory:id_base
+                        | 'shallowHistory'  ~ shallowHistory:id_base
+                        | 'join'            ~ join:id_base ['->' target:id [effect:effect_decl]]
+                        | 'fork'            ~ fork:id_base
+                        | 'junction'        ~ junction:id_base
+                        | 'choice'          ~ choice:id_base
+                        | entrypoint:entrypoint_decl
+                        | exitpoint:exitpoint_decl
                         | 'terminate'
                         ;
-join                    = 'join' join:id ['->' target:id [effect_decl]]
+fork_decl               = 'fork' ~ fork:id_base '{' {transition:fork_transition}+ '}'
                         ;
-fork                    = 'fork' fork:id ['{' fork_transition {fork_transition}+ '}']
+fork_transition         = '->' target:id [effect:effect_decl]
                         ;
-fork_transition         = '->' target:id [effect_decl]
+choice_decl             = 'choice' ~ choice:id_base '{' {transition:choice_transition}+ '}'
                         ;
-choice                  = 'choice' choice:id ['{' {choice_transition}+ '}']
+choice_transition       = '->' target:id '?' guard:guard_decl
                         ;
-choice_transition       = '->' target:id '?' guard_decl
+entrypoint_decl         = 'entryPoint' ~ src:id_base '->' target:id [effect:effect_decl]
+                        | 'entryPoint' ~ src:id_base '->' target:id [guard:guard_decl effect:effect_decl]
                         ;
-entrypoint              = 'entryPoint' src:id '->' target:id [effect_decl]
-                        | 'entryPoint' src:id '->' target:id [guard_decl effect_decl]
+exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [effect:effect_decl]]
+                        | 'exitPoint'  ~ src:id_base ['->' target:id [guard:guard_decl effect:effect_decl]]
                         ;
-exitpoint               = 'exitPoint'  src:id ['->' target:id [effect_decl]]
-                        | 'exitPoint'  src:id ['->' target:id [guard_decl effect_decl]]
+state                   = 'state' ~ state:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
                         ;
-state                   = 'state' state:id_base ['{' {s:statement|r:region|b:behavior}+ '}']
+region                  = 'region' ~ region:id_base '{' {region_member:region_member}+ '}'
                         ;
-region                  = 'region' region:id_base '{' {s:statement}+ '}'
+submachine_state        = 'submachine' ~ state:id_base submachine_name:id_base ['{' {conn_point:conn_point_decl}+ '}']
                         ;
-submachine_state        = 'submachine' state:id_base submachine_name:id_base ['{' {c:conn_point_decl}+ '}']
+conn_point_decl         = 'entryPoint' ~ entryPoint:id_base
+                        | 'exitPoint'  ~ exitPoint:id_base
                         ;
-conn_point_decl         = 'entryPoint' entryPoint:id_base
-                        | 'exitPoint'  exitPoint:id_base
+transition              = local_transition:local_transition
+                        | external_transition:external_transition
+                        | internal_transition:internal_transition
                         ;
-transition              = l:local_transition
-                        | e:external_transition
-                        | i:internal_transition
+internal_transition     = trigger:trigger
                         ;
-internal_transition     = t:trigger
+local_transition        = src:'initial' ~ '->' target:id        [':' trigger:trigger]
+                        | src:id          '->' target:'final' ~ [':' trigger:trigger]
                         ;
-local_transition        = src:'initial' '->' target:id      [':' trigger]
-                        | src:id        '->' target:'final' [':' trigger]
+external_transition     = src:id '->' target:id [':' trigger:trigger]
                         ;
-external_transition     = src:id '->' target:id [':' t:trigger]
+trigger                 = trigger:id_base {',' trigger:id_base}* [guard:guard_decl] [effect:effect_decl]
                         ;
-trigger                 = trigger:id_base {',' trigger:id_base}* [g:guard_decl] [e:effect_decl]
-                        ;
-behavior                = ('entry'|'exit'|'do') [effect_decl]
+behavior                = kind:('entry'|'exit'|'doActivity') ~ effect:effect_decl
                         ;
 
 (* Tokens & Expressions *)
-id                      = id_base {[r:id_region] [s:id_scope]}*
+id                      = id:id_base {[r:id_region] [s:id_scope]}*
                         | c:id_conn_point
                         ;
 id_region               = '[' id:id ']'
