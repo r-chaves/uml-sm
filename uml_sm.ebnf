@@ -58,11 +58,9 @@ choice_decl             = 'choice' ~ choice:id_base '{' {transition:choice_trans
                         ;
 choice_transition       = '->' target:id '?' guard:guard_decl
                         ;
-entrypoint_decl         = 'entryPoint' ~ src:id_base '->' target:id [effect:effect_decl]
-                        | 'entryPoint' ~ src:id_base '->' target:id [guard:guard_decl effect:effect_decl]
+entrypoint_decl         = 'entryPoint' ~ src:id_base ['->' target:id [['?' guard:guard_decl] effect:effect_decl]]
                         ;
-exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [effect:effect_decl]]
-                        | 'exitPoint'  ~ src:id_base ['->' target:id [guard:guard_decl effect:effect_decl]]
+exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [['?' guard:guard_decl] effect:effect_decl]]
                         ;
 state                   = 'state' ~ state:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
                         ;
@@ -90,14 +88,13 @@ behavior                = kind:('entry'|'exit'|'doActivity') ~ effect:effect_dec
                         ;
 
 (* Tokens & Expressions *)
-id                      = id:id_base {[r:id_region] [s:id_scope]}*
-                        | c:id_conn_point
+id                      = id:id_base {region:id_region|scope:id_scope|conn_point:id_conn_point}*
                         ;
-id_region               = '[' id:id ']'
+id_region               = '[' @:id ']'
                         ;
-id_scope                = '::' id:id
+id_scope                = '::' @:id
                         ;
-id_conn_point           = id:id '.' id_base
+id_conn_point           = '.' @:id_base
                         ;
 @name
 id_base                 = /\w+/
