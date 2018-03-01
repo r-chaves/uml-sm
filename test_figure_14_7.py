@@ -38,24 +38,24 @@ import tatsu
 ##############################################################################
 
 # pylint: disable=C0103
-class TestUMLFigure14_2(unittest.TestCase):
+class TestUMLFigure14_7(unittest.TestCase):
     """
-    TestCase for UML Figure 14.2.
+    TestCase for UML Figure 14.7.
     """
-    def test_figure_14_2(self):
+    def test_figure_14_7(self):
         """
-        Test script for UML 2.5 Figure 14.2.
+        Test script for UML 2.5 Figure 14.7.
 
         Compiles the UML SM grammar, uses it to parse the text file containing
-        the DSL definition of the state machine in Figure 14.2 of the UML 2.5
+        the DSL definition of the state machine in Figure 14.7 of the UML 2.5
         specification, and then compares the JSON representation to that of
         the expected output.
         """
         with open('uml_sm.ebnf', 'r') as grammar_file:
             grammar = grammar_file.read()
-        with open('figure_14_2.txt', 'r') as stm_file:
+        with open('figure_14_7.txt', 'r') as stm_file:
             stm_desc = stm_file.read()
-        with open('figure_14_2_expected.json', 'r') as expected_json_fp:
+        with open('figure_14_7_expected.json', 'r') as expected_json_fp:
             expected_ast = json.load(expected_json_fp)
 
         # Compile the model and parse the UML figure.
@@ -67,7 +67,7 @@ class TestUMLFigure14_2(unittest.TestCase):
             self.assertTrue(expected_ast == test_ast)
         except AssertionError, e:
             # For debugging purposes, write the test AST to a file on failure.
-            with open('figure_14_2_failed.json', 'w') as failed_json_fp:
+            with open('figure_14_7_failed.json', 'w') as failed_json_fp:
                 failed_json_fp.write(tatsu.util.asjsons(test_ast))
             self.fail(e)
 

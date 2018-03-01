@@ -78,7 +78,7 @@ transition              = local_transition:local_transition
 internal_transition     = trigger_decl
                         ;
 local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger_decl]
-                        | src:id          '->' target:'final' ~ [trigger:trigger_decl]
+                        | src:id          '->' target:'final' ~ [guard:guard_decl] [trigger:trigger_decl]
                         ;
 external_transition     = src:id '->' target:id [trigger:trigger_decl]
                         ;
@@ -101,7 +101,8 @@ id_scope                = '::' @:id
 id_conn_point           = '.' @:id_base
                         ;
 @name
-id_base                 = /\w+/
+id_base                 = /\w+/ '(' id_base ')'
+                        | /\w+/
                         ;
 expr                    = /.+/
                         ;

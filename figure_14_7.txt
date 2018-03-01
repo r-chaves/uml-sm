@@ -1,0 +1,23 @@
+stm uml_figure_14_7
+{
+    state Dialing
+    {
+        initial -> Start
+
+        state Start
+        {
+            entry / start dial tone
+            exit  / stop dial tone
+        }
+
+        Start -> Partial_Dial : digit(n)
+
+        state Partial_Dial
+        {
+            entry / number.append(n)
+        }
+
+        Partial_Dial -> Partial_Dial : digit(n)
+        Partial_Dial -> final ? [number.isValid()]
+    }
+}

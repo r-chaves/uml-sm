@@ -1,0 +1,120 @@
+{
+  "stm_name": "uml_figure_14_7",
+  "region_member": {
+    "region_member": [
+      {
+        "internal_transition": null,
+        "external_transition": null,
+        "local_transition": {
+          "src": "initial",
+          "guard": null,
+          "trigger": null,
+          "target": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Start"
+          }
+        }
+      },
+      {
+        "region_member": null,
+        "state": "Start",
+        "region": null,
+        "behavior": [
+          {
+            "kind": "entry",
+            "effect": "start dial tone"
+          },
+          {
+            "kind": "exit",
+            "effect": "stop dial tone"
+          }
+        ]
+      },
+      {
+        "internal_transition": null,
+        "external_transition": {
+          "src": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Start"
+          },
+          "trigger": {
+            "guard": null,
+            "trigger": [
+              "digit",
+              "(",
+              "n",
+              ")"
+            ],
+            "effect": null
+          },
+          "target": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Partial_Dial"
+          }
+        },
+        "local_transition": null
+      },
+      {
+        "region_member": null,
+        "state": "Partial_Dial",
+        "region": null,
+        "behavior": {
+          "kind": "entry",
+          "effect": "number.append(n)"
+        }
+      },
+      {
+        "internal_transition": null,
+        "external_transition": {
+          "src": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Partial_Dial"
+          },
+          "trigger": {
+            "guard": null,
+            "trigger": [
+              "digit",
+              "(",
+              "n",
+              ")"
+            ],
+            "effect": null
+          },
+          "target": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Partial_Dial"
+          }
+        },
+        "local_transition": null
+      },
+      {
+        "internal_transition": null,
+        "external_transition": null,
+        "local_transition": {
+          "src": {
+            "scope": null,
+            "region": null,
+            "conn_point": null,
+            "name": "Partial_Dial"
+          },
+          "guard": "number.isValid()",
+          "trigger": null,
+          "target": "final"
+        }
+      }
+    ],
+    "state": "Dialing",
+    "region": null,
+    "behavior": null
+  }
+}
