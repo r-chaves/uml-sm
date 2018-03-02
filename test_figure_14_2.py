@@ -56,19 +56,20 @@ class TestUMLFigure14_2(unittest.TestCase):
         with open('figure_14_2.txt', 'r') as stm_file:
             stm_desc = stm_file.read()
         with open('figure_14_2_expected.json', 'r') as expected_json_fp:
-            expected_ast = json.load(expected_json_fp)
+            expected_json = json.load(expected_json_fp)
 
         # Compile the model and parse the UML figure.
         model = tatsu.compile(grammar, trace=False)
         test_ast = model.parse(stm_desc, trace=False, colorize=True)
+        test_json = json.loads(tatsu.util.asjsons(test_ast))
 
         # See if we got the expected result.
         try:
-            self.assertTrue(expected_ast == test_ast)
+            self.assertTrue(expected_json == test_json)
         except AssertionError, e:
             # For debugging purposes, write the test AST to a file on failure.
             with open('figure_14_2_failed.json', 'w') as failed_json_fp:
-                failed_json_fp.write(tatsu.util.asjsons(test_ast))
+                failed_json_fp.write(test_json)
             self.fail(e)
 
 if __name__ == "__main__":

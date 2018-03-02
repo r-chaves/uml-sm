@@ -108,5 +108,5 @@ expr                    = /.+/
                         ;
 guard_expr              = /[^\]\n]+/
                         ;
-trigger_expr            = /[^,\/\n]+/
+trigger_expr            = /[^,\/\n\ ]+/
                         ;
