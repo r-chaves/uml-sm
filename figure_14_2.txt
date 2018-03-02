@@ -5,7 +5,7 @@ stm uml_figure_14_2
         state S1
         {
             exit / xS1
-            exitPoint myexit -> T1::T111.myentry / t2
+            exitPoint myexit -> ::S::T1::T111.myentry / t2
 
             S11 -> myexit : sig / t1
 

@@ -82,7 +82,7 @@ local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger
                         ;
 external_transition     = src:id '->' target:id [trigger:trigger_decl]
                         ;
-trigger_decl            = ':' trigger:id_base {',' trigger:id_base}* [guard:guard_decl] [effect:effect_decl]
+trigger_decl            = ':' trigger:trigger_expr {',' trigger:trigger_expr}* [guard:guard_decl] [effect:effect_decl]
                         ;
 behavior                = kind:('entry'|'exit'|'doActivity') ~ effect:effect_decl
                         ;
@@ -92,19 +92,21 @@ effect_decl             = '/' @:expr
                         ;
 
 (* Tokens & Expressions *)
-id                      = name:id_base {region:id_region|scope:id_scope|conn_point:id_conn_point}*
+id                      = ['::'] @:id_sub
                         ;
-id_region               = '[' @:id ']'
+id_sub                  = name:id_base {(region:id_region)|(scope:id_scope)}* ['.' conn_point:id_base]
                         ;
-id_scope                = '::' @:id
+id_region               = '['  @:id_sub ']'
                         ;
-id_conn_point           = '.' @:id_base
+id_scope                = '::' @:id_sub
                         ;
+
 @name
-id_base                 = /\w+/ '(' id_base ')'
-                        | /\w+/
+id_base                 = /\w+/
                         ;
 expr                    = /.+/
                         ;
 guard_expr              = /[^\]\n]+/
+                        ;
+trigger_expr            = /[^,\/\n]+/
                         ;

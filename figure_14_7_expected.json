@@ -43,12 +43,7 @@
           },
           "trigger": {
             "guard": null,
-            "trigger": [
-              "digit",
-              "(",
-              "n",
-              ")"
-            ],
+            "trigger": "digit(n)",
             "effect": null
           },
           "target": {
@@ -80,12 +75,7 @@
           },
           "trigger": {
             "guard": null,
-            "trigger": [
-              "digit",
-              "(",
-              "n",
-              ")"
-            ],
+            "trigger": "digit(n)",
             "effect": null
           },
           "target": {

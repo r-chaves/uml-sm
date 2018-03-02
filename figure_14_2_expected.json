@@ -19,14 +19,19 @@
               "guard": null,
               "target": {
                 "scope": {
-                  "scope": null,
+                  "scope": {
+                    "scope": null,
+                    "region": null,
+                    "conn_point": "myentry",
+                    "name": "T111"
+                  },
                   "region": null,
-                  "conn_point": "myentry",
-                  "name": "T111"
+                  "conn_point": null,
+                  "name": "T1"
                 },
                 "region": null,
                 "conn_point": null,
-                "name": "T1"
+                "name": "S"
               },
               "effect": "t2"
             }
