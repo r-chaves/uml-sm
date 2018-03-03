@@ -22,6 +22,7 @@
 @@keyword               :: entry
 @@keyword               :: exit
 @@keyword               :: do
+@@keyword               :: self
 
 (* Grammar *)
 file_input              = state_machine $
@@ -75,7 +76,7 @@ transition              = local_transition:local_transition
                         | external_transition:external_transition
                         | internal_transition:internal_transition
                         ;
-internal_transition     = trigger_decl
+internal_transition     = 'self' ~ trigger_decl
                         ;
 local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger_decl]
                         | src:id          '->' target:'final' ~ [guard:guard_decl] [trigger:trigger_decl]
