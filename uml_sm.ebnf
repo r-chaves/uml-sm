@@ -85,7 +85,7 @@ external_transition     = src:id '->' target:id [trigger:trigger_decl]
                         ;
 trigger_decl            = ':' trigger:trigger_expr {',' trigger:trigger_expr}* [guard:guard_decl] [effect:effect_decl]
                         ;
-behavior                = kind:('entry'|'exit'|'doActivity') ~ effect:effect_decl
+behavior                = kind:('entry'|'exit'|'do') ~ effect:effect_decl
                         ;
 guard_decl              = '?' '[' @:guard_expr ']'
                         ;

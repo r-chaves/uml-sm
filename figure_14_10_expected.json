@@ -1,0 +1,223 @@
+{
+  "stm_name": "uml_figure_14_10", 
+  "region_member": {
+    "region_member": null, 
+    "state": "LightOn", 
+    "region": [
+      {
+        "region_member": [
+          {
+            "internal_transition": null, 
+            "external_transition": null, 
+            "local_transition": {
+              "src": "initial", 
+              "guard": null, 
+              "trigger": null, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Initial"
+              }
+            }
+          }, 
+          {
+            "region_member": null, 
+            "state": "Initial", 
+            "region": null, 
+            "behavior": null
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Initial"
+              }, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "go", 
+                "effect": null
+              }, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Running"
+              }
+            }, 
+            "local_transition": null
+          }, 
+          {
+            "region_member": null, 
+            "state": "Running", 
+            "region": null, 
+            "behavior": null
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": null, 
+            "local_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Running"
+              }, 
+              "guard": null, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "stop", 
+                "effect": null
+              }, 
+              "target": "final"
+            }
+          }
+        ], 
+        "region": "one"
+      }, 
+      {
+        "region_member": [
+          {
+            "internal_transition": null, 
+            "external_transition": null, 
+            "local_transition": {
+              "src": "initial", 
+              "guard": null, 
+              "trigger": null, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Initial"
+              }
+            }
+          }, 
+          {
+            "region_member": null, 
+            "state": "Initial", 
+            "region": null, 
+            "behavior": null
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Initial"
+              }, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "go", 
+                "effect": null
+              }, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Running"
+              }
+            }, 
+            "local_transition": null
+          }, 
+          {
+            "region_member": null, 
+            "state": "Running", 
+            "region": null, 
+            "behavior": null
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": null, 
+            "local_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Running"
+              }, 
+              "guard": null, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "stop", 
+                "effect": null
+              }, 
+              "target": "final"
+            }
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Running"
+              }, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "pause", 
+                "effect": null
+              }, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Wait"
+              }
+            }, 
+            "local_transition": null
+          }, 
+          {
+            "region_member": null, 
+            "state": "Wait", 
+            "region": null, 
+            "behavior": null
+          }, 
+          {
+            "internal_transition": null, 
+            "external_transition": {
+              "src": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Wait"
+              }, 
+              "trigger": {
+                "guard": null, 
+                "trigger": "reset", 
+                "effect": null
+              }, 
+              "target": {
+                "scope": null, 
+                "region": null, 
+                "conn_point": null, 
+                "name": "Initial"
+              }
+            }, 
+            "local_transition": null
+          }
+        ], 
+        "region": "two"
+      }
+    ], 
+    "behavior": [
+      {
+        "kind": "entry", 
+        "effect": "turn on main light"
+      }, 
+      {
+        "kind": "do", 
+        "effect": "flash secondary light"
+      }, 
+      {
+        "kind": "exit", 
+        "effect": "turn off main light, turn off secondary light"
+      }
+    ]
+  }
+}
