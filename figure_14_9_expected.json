@@ -1,0 +1,225 @@
+{
+  "stm_name": "uml_figure_14_9", 
+  "region_member": {
+    "region_member": [
+      {
+        "internal_transition": null, 
+        "external_transition": null, 
+        "local_transition": {
+          "src": "initial", 
+          "guard": null, 
+          "trigger": null, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Studying"
+          }
+        }
+      }, 
+      {
+        "region_member": null, 
+        "state": "Studying", 
+        "region": [
+          {
+            "region_member": [
+              {
+                "internal_transition": null, 
+                "external_transition": null, 
+                "local_transition": {
+                  "src": "initial", 
+                  "guard": null, 
+                  "trigger": null, 
+                  "target": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Lab1"
+                  }
+                }
+              }, 
+              {
+                "region_member": null, 
+                "state": "Lab1", 
+                "region": null, 
+                "behavior": null
+              }, 
+              {
+                "internal_transition": null, 
+                "external_transition": {
+                  "src": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Lab1"
+                  }, 
+                  "trigger": {
+                    "guard": null, 
+                    "trigger": "lab_done", 
+                    "effect": null
+                  }, 
+                  "target": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Lab2"
+                  }
+                }, 
+                "local_transition": null
+              }, 
+              {
+                "region_member": null, 
+                "state": "Lab2", 
+                "region": null, 
+                "behavior": null
+              }, 
+              {
+                "internal_transition": null, 
+                "external_transition": null, 
+                "local_transition": {
+                  "src": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Lab2"
+                  }, 
+                  "guard": null, 
+                  "trigger": {
+                    "guard": null, 
+                    "trigger": "lab_done", 
+                    "effect": null
+                  }, 
+                  "target": "final"
+                }
+              }
+            ], 
+            "region": "Lab"
+          }, 
+          {
+            "region_member": [
+              {
+                "internal_transition": null, 
+                "external_transition": null, 
+                "local_transition": {
+                  "src": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Term_Project"
+                  }, 
+                  "guard": null, 
+                  "trigger": {
+                    "guard": null, 
+                    "trigger": "project_done", 
+                    "effect": null
+                  }, 
+                  "target": "final"
+                }
+              }, 
+              {
+                "region_member": null, 
+                "state": "Term_Project", 
+                "region": null, 
+                "behavior": null
+              }
+            ], 
+            "region": "Term"
+          }, 
+          {
+            "region_member": [
+              {
+                "region_member": null, 
+                "state": "Final_Test", 
+                "region": null, 
+                "behavior": null
+              }, 
+              {
+                "internal_transition": null, 
+                "external_transition": null, 
+                "local_transition": {
+                  "src": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Final_Test"
+                  }, 
+                  "guard": null, 
+                  "trigger": {
+                    "guard": null, 
+                    "trigger": "pass", 
+                    "effect": null
+                  }, 
+                  "target": "final"
+                }
+              }, 
+              {
+                "internal_transition": null, 
+                "external_transition": {
+                  "src": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Final_Test"
+                  }, 
+                  "trigger": {
+                    "guard": null, 
+                    "trigger": "fail", 
+                    "effect": null
+                  }, 
+                  "target": {
+                    "scope": {
+                      "scope": null, 
+                      "region": null, 
+                      "conn_point": null, 
+                      "name": "Failed"
+                    }, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "CourseAttempt"
+                  }
+                }, 
+                "local_transition": null
+              }
+            ], 
+            "region": "Final"
+          }
+        ], 
+        "behavior": null
+      }, 
+      {
+        "region_member": null, 
+        "state": "Failed", 
+        "region": null, 
+        "behavior": null
+      }, 
+      {
+        "region_member": null, 
+        "state": "Passed", 
+        "region": null, 
+        "behavior": null
+      }, 
+      {
+        "internal_transition": null, 
+        "external_transition": {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Studying"
+          }, 
+          "trigger": null, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Passed"
+          }
+        }, 
+        "local_transition": null
+      }
+    ], 
+    "state": "CourseAttempt", 
+    "region": null, 
+    "behavior": null
+  }
+}

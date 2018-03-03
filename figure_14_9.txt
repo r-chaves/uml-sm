@@ -1,0 +1,36 @@
+stm uml_figure_14_9
+{
+    state CourseAttempt
+    {
+        initial -> Studying
+
+        state Studying
+        {
+            region Lab
+            {
+                initial -> Lab1
+                state Lab1
+                Lab1 -> Lab2 : lab_done
+                state Lab2
+                Lab2 -> final : lab_done
+            }
+
+            region Term
+            {
+                Term_Project -> final : project_done
+                state Term_Project
+            }
+
+            region Final
+            {
+                state Final_Test
+                Final_Test -> final : pass
+                Final_Test -> CourseAttempt::Failed : fail
+            }
+        }
+
+        state Failed
+        state Passed
+        Studying -> Passed
+    }
+}
