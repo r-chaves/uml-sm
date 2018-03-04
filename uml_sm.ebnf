@@ -42,18 +42,18 @@ vertex                  = pseudostate
 pseudostate             = 'deepHistory'     ~ deepHistory:id_base
                         | 'shallowHistory'  ~ shallowHistory:id_base
                         | 'join'            ~ join:id_base ['->' target:id [effect:effect_decl]]
-                        | 'fork'            ~ fork:id_base
+                        | fork:fork_decl
                         | 'junction'        ~ junction:id_base
-                        | 'choice'          ~ choice:id_base
+                        | choice:choice_decl
                         | entrypoint:entrypoint_decl
                         | exitpoint:exitpoint_decl
                         | 'terminate'       ~ terminate:id_base
                         ;
-fork_decl               = 'fork' ~ fork:id_base '{' {transition:fork_transition}+ '}'
+fork_decl               = 'fork' ~ name:id_base ['{' {transition:fork_transition}+ '}']
                         ;
 fork_transition         = '->' target:id [effect:effect_decl]
                         ;
-choice_decl             = 'choice' ~ choice:id_base '{' {transition:choice_transition}+ '}'
+choice_decl             = 'choice' ~ name:id_base ['{' {transition:choice_transition}+ '}']
                         ;
 choice_transition       = '->' target:id guard:guard_decl
                         ;
