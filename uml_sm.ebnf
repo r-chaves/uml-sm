@@ -56,9 +56,9 @@ choice_decl             = 'choice' ~ choice:id_base '{' {transition:choice_trans
                         ;
 choice_transition       = '->' target:id guard:guard_decl
                         ;
-entrypoint_decl         = 'entryPoint' ~ src:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
+entrypoint_decl         = 'entryPoint' ~ name:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
                         ;
-exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
+exitpoint_decl          = 'exitPoint'  ~ name:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
                         ;
 state                   = 'state'  ~ name:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
                         ;
