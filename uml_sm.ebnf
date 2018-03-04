@@ -106,7 +106,7 @@ id_base                 = /\w+/
                         ;
 expr                    = /.+/
                         ;
-guard_expr              = /[^\s\]]+/
+guard_expr              = /[^\n\]]+/
                         ;
 trigger_expr            = /[^\s,]+/
                         ;
