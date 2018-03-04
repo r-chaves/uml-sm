@@ -23,6 +23,7 @@
 @@keyword               :: exit
 @@keyword               :: do
 @@keyword               :: self
+@@keyword               :: terminate
 
 (* Grammar *)
 file_input              = state_machine $
@@ -46,7 +47,7 @@ pseudostate             = 'deepHistory'     ~ deepHistory:id_base
                         | 'choice'          ~ choice:id_base
                         | entrypoint:entrypoint_decl
                         | exitpoint:exitpoint_decl
-                        | 'terminate'
+                        | 'terminate'       ~ terminate:id_base
                         ;
 fork_decl               = 'fork' ~ fork:id_base '{' {transition:fork_transition}+ '}'
                         ;
@@ -102,11 +103,11 @@ id_scope                = '::' ~ @:id_main
 id_submachine           = state:id_base ':' ~ submachine:id_base
                         ;
 @name
-id_base                 = /\w+/
+id_base                 = /(\w|-)+/
                         ;
 expr                    = /.+/
                         ;
 guard_expr              = /[^\n\]]+/
                         ;
-trigger_expr            = /[^\s,]+/
+trigger_expr            = /[^\n,\/\?]+/
                         ;

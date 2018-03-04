@@ -1,0 +1,56 @@
+stm uml_figure_14_36
+{
+    entryPoint activeEntry -> Active
+    terminate aborted
+    initial -> Idle
+    Idle -> Active : lift receiver / get dial tone
+    Active -> Idle : caller hangs up / disconnect
+    Active -> aborted : abort
+    Active -> final : terminate
+
+    state Active
+    {
+        initial -> DialTone
+        state DialTone
+        {
+            do / play dial tone
+        }
+
+        state Time-out
+        {
+            do / play message
+        }
+
+        state Dialing
+        state Invalid
+        {
+            do / play message
+        }
+
+        state Connecting
+        state Busy
+        {
+            do / play busy tone
+        }
+
+        state Pinned
+        state Talking
+        state Ringing
+        {
+            do / play ringing tone
+        }
+
+        DialTone -> Time-out : after (15 sec.)
+        DialTone -> Dialing : dial digit(n)
+        Dialing -> Time-out : after (15 sec.)
+        Dialing -> Dialing : dial digit(n) ? [incomplete]
+        Dialing -> Invalid : dial digit(n) ? [invalid]
+        Dialing -> Connecting : dial digit(n) ? [valid] / Connecting
+        Connecting -> Busy : busy
+        Connecting -> Ringing : connected
+        Ringing -> Talking : callee answers / enable speech
+        Talking -> Pinned : callee hangs up
+        Pinned -> Talking : callee answers
+
+    }
+}

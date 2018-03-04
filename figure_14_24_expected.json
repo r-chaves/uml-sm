@@ -36,6 +36,7 @@
       "junction": "j1", 
       "target": null, 
       "deepHistory": null, 
+      "terminate": null, 
       "effect": null, 
       "choice": null, 
       "shallowHistory": null, 
@@ -52,7 +53,7 @@
       }, 
       "guard": "b < 0", 
       "trigger": {
-        "name": "e2"
+        "name": "e2 "
       }, 
       "target": {
         "scope": null, 
@@ -71,7 +72,7 @@
       }, 
       "guard": "b < 0", 
       "trigger": {
-        "name": "e1"
+        "name": "e1 "
       }, 
       "target": {
         "scope": null, 
