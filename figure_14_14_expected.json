@@ -1,0 +1,117 @@
+{
+  "stm_name": "uml_figure_14_14", 
+  "region_member": [
+    {
+      "src": "initial", 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "verifyCard"
+      }, 
+      "effect": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "verifyCard", 
+      "behavior": null
+    }, 
+    {
+      "exit_point": "aborted", 
+      "entry_point": null, 
+      "name": {
+        "state": "readAmount", 
+        "submachine": "ReadAmountSM"
+      }
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": "aborted", 
+        "name": "readAmount"
+      }, 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "CardReleased"
+      }, 
+      "effect": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "CardReleased", 
+      "behavior": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "readAmount"
+      }, 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "outOfService"
+      }, 
+      "effect": "outOfService"
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "readAmount"
+      }, 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "verifyTransaction"
+      }, 
+      "effect": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "outOfService", 
+      "behavior": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "verifyTransaction", 
+      "behavior": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "verifyTransaction"
+      }, 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "CardReleased"
+      }, 
+      "effect": "releaseCard"
+    }
+  ]
+}

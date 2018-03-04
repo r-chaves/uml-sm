@@ -2,209 +2,167 @@
   "stm_name": "uml_figure_14_10", 
   "region_member": {
     "region_member": null, 
-    "state": "LightOn", 
     "region": [
       {
         "region_member": [
           {
-            "internal_transition": null, 
-            "external_transition": null, 
-            "local_transition": {
-              "src": "initial", 
-              "guard": null, 
-              "trigger": null, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Initial"
-              }
-            }
-          }, 
-          {
-            "region_member": null, 
-            "state": "Initial", 
-            "region": null, 
-            "behavior": null
-          }, 
-          {
-            "internal_transition": null, 
-            "external_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Initial"
-              }, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "go", 
-                "effect": null
-              }, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Running"
-              }
+            "src": "initial", 
+            "guard": null, 
+            "trigger": null, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
             }, 
-            "local_transition": null
+            "effect": null
           }, 
           {
             "region_member": null, 
-            "state": "Running", 
             "region": null, 
+            "name": "Initial", 
             "behavior": null
           }, 
           {
-            "internal_transition": null, 
-            "external_transition": null, 
-            "local_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Running"
-              }, 
-              "guard": null, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "stop", 
-                "effect": null
-              }, 
-              "target": "final"
-            }
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "go"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Running", 
+            "behavior": null
+          }, 
+          {
+            "src": "Running", 
+            "guard": null, 
+            "trigger": {
+              "name": "stop"
+            }, 
+            "target": "final", 
+            "effect": null
           }
         ], 
-        "region": "one"
+        "name": "one"
       }, 
       {
         "region_member": [
           {
-            "internal_transition": null, 
-            "external_transition": null, 
-            "local_transition": {
-              "src": "initial", 
-              "guard": null, 
-              "trigger": null, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Initial"
-              }
-            }
+            "src": "initial", 
+            "guard": null, 
+            "trigger": null, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "effect": null
           }, 
           {
             "region_member": null, 
-            "state": "Initial", 
             "region": null, 
+            "name": "Initial", 
             "behavior": null
           }, 
           {
-            "internal_transition": null, 
-            "external_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Initial"
-              }, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "go", 
-                "effect": null
-              }, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Running"
-              }
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
             }, 
-            "local_transition": null
+            "guard": null, 
+            "trigger": {
+              "name": "go"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
+            }, 
+            "effect": null
           }, 
           {
             "region_member": null, 
-            "state": "Running", 
             "region": null, 
+            "name": "Running", 
             "behavior": null
           }, 
           {
-            "internal_transition": null, 
-            "external_transition": null, 
-            "local_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Running"
-              }, 
-              "guard": null, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "stop", 
-                "effect": null
-              }, 
-              "target": "final"
-            }
+            "src": "Running", 
+            "guard": null, 
+            "trigger": {
+              "name": "stop"
+            }, 
+            "target": "final", 
+            "effect": null
           }, 
           {
-            "internal_transition": null, 
-            "external_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Running"
-              }, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "pause", 
-                "effect": null
-              }, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Wait"
-              }
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
             }, 
-            "local_transition": null
+            "guard": null, 
+            "trigger": {
+              "name": "pause"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Wait"
+            }, 
+            "effect": null
           }, 
           {
             "region_member": null, 
-            "state": "Wait", 
             "region": null, 
+            "name": "Wait", 
             "behavior": null
           }, 
           {
-            "internal_transition": null, 
-            "external_transition": {
-              "src": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Wait"
-              }, 
-              "trigger": {
-                "guard": null, 
-                "trigger": "reset", 
-                "effect": null
-              }, 
-              "target": {
-                "scope": null, 
-                "region": null, 
-                "conn_point": null, 
-                "name": "Initial"
-              }
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Wait"
             }, 
-            "local_transition": null
+            "guard": null, 
+            "trigger": {
+              "name": "reset"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "effect": null
           }
         ], 
-        "region": "two"
+        "name": "two"
       }
     ], 
+    "name": "LightOn", 
     "behavior": [
       {
         "kind": "entry", 

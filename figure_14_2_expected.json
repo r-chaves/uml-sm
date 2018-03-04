@@ -1,133 +1,129 @@
 {
-  "stm_name": "uml_figure_14_2",
+  "stm_name": "uml_figure_14_2", 
   "region_member": {
     "region_member": [
       {
         "region_member": [
           {
-            "fork": null,
-            "join": null,
-            "target": null,
-            "deepHistory": null,
-            "effect": null,
-            "choice": null,
-            "shallowHistory": null,
-            "entrypoint": null,
-            "junction": null,
+            "fork": null, 
+            "join": null, 
+            "target": null, 
+            "deepHistory": null, 
+            "effect": null, 
+            "choice": null, 
+            "shallowHistory": null, 
+            "entrypoint": null, 
+            "junction": null, 
             "exitpoint": {
-              "src": "myexit",
-              "guard": null,
+              "src": "myexit", 
+              "guard": null, 
               "target": {
                 "scope": {
                   "scope": {
-                    "scope": null,
-                    "region": null,
-                    "conn_point": "myentry",
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": "myentry", 
                     "name": "T111"
-                  },
-                  "region": null,
-                  "conn_point": null,
+                  }, 
+                  "region": null, 
+                  "conn_point": null, 
                   "name": "T1"
-                },
-                "region": null,
-                "conn_point": null,
+                }, 
+                "region": null, 
+                "conn_point": null, 
                 "name": "S"
-              },
+              }, 
               "effect": "t2"
             }
-          },
+          }, 
           {
-            "internal_transition": null,
-            "external_transition": {
-              "src": {
-                "scope": null,
-                "region": null,
-                "conn_point": null,
-                "name": "S11"
-              },
-              "trigger": {
-                "guard": null,
-                "trigger": "sig",
-                "effect": "t1"
-              },
-              "target": {
-                "scope": null,
-                "region": null,
-                "conn_point": null,
-                "name": "myexit"
-              }
-            },
-            "local_transition": null
-          },
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "S11"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "sig"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "myexit"
+            }, 
+            "effect": "t1"
+          }, 
           {
-            "region_member": null,
-            "state": "S11",
-            "region": null,
+            "region_member": null, 
+            "region": null, 
+            "name": "S11", 
             "behavior": {
-              "kind": "exit",
+              "kind": "exit", 
               "effect": "xS11"
             }
           }
-        ],
-        "state": "S1",
-        "region": null,
+        ], 
+        "region": null, 
+        "name": "S1", 
         "behavior": {
-          "kind": "exit",
+          "kind": "exit", 
           "effect": "xS1"
         }
-      },
+      }, 
       {
         "region_member": {
           "region_member": [
             {
-              "fork": null,
-              "join": null,
-              "target": null,
-              "deepHistory": null,
-              "effect": null,
-              "choice": null,
-              "shallowHistory": null,
+              "fork": null, 
+              "join": null, 
+              "target": null, 
+              "deepHistory": null, 
+              "effect": null, 
+              "choice": null, 
+              "shallowHistory": null, 
               "entrypoint": {
-                "src": "myentry",
-                "guard": null,
+                "src": "myentry", 
+                "guard": null, 
                 "target": {
-                  "scope": null,
-                  "region": null,
-                  "conn_point": null,
+                  "scope": null, 
+                  "region": null, 
+                  "conn_point": null, 
                   "name": "T111"
-                },
+                }, 
                 "effect": "t3"
-              },
-              "junction": null,
+              }, 
+              "junction": null, 
               "exitpoint": null
-            },
+            }, 
             {
-              "region_member": null,
-              "state": "T111",
-              "region": null,
+              "region_member": null, 
+              "region": null, 
+              "name": "T111", 
               "behavior": {
-                "kind": "entry",
+                "kind": "entry", 
                 "effect": "eT111"
               }
             }
-          ],
-          "state": "T11",
-          "region": null,
+          ], 
+          "region": null, 
+          "name": "T11", 
           "behavior": {
-            "kind": "entry",
+            "kind": "entry", 
             "effect": "eT11"
           }
-        },
-        "state": "T1",
-        "region": null,
+        }, 
+        "region": null, 
+        "name": "T1", 
         "behavior": {
-          "kind": "entry",
+          "kind": "entry", 
           "effect": "eT1"
         }
       }
-    ],
-    "state": "S",
-    "region": null,
+    ], 
+    "region": null, 
+    "name": "S", 
     "behavior": null
   }
 }

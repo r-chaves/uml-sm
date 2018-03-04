@@ -38,9 +38,6 @@ vertex                  = pseudostate
                         | state
                         | submachine_state
                         ;
-conn_point              = 'conn_point' 'entry' entry_conn_point:id_base
-                        | 'conn_point' 'exit'  exit_conn_point:id_base
-                        ;
 pseudostate             = 'deepHistory'     ~ deepHistory:id_base
                         | 'shallowHistory'  ~ shallowHistory:id_base
                         | 'join'            ~ join:id_base ['->' target:id [effect:effect_decl]]
@@ -63,45 +60,47 @@ entrypoint_decl         = 'entryPoint' ~ src:id_base ['->' target:id [[guard:gua
                         ;
 exitpoint_decl          = 'exitPoint'  ~ src:id_base ['->' target:id [[guard:guard_decl] effect:effect_decl]]
                         ;
-state                   = 'state' ~ state:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
+state                   = 'state'  ~ name:id_base ['{' {region_member:region_member|region:region|behavior:behavior}+ '}']
                         ;
-region                  = 'region' ~ region:id_base '{' {region_member:region_member}+ '}'
+region                  = 'region' ~ name:id_base '{' {region_member:region_member}+ '}'
                         ;
-submachine_state        = 'submachine' ~ state:id_base submachine_name:id_base ['{' {conn_point:conn_point_decl}+ '}']
+submachine_state        = 'submachine' ~ name:id_submachine ['{' {entry_point:submachine_entrypoint|exit_point:submachine_exitpoint}+ '}']
                         ;
-conn_point_decl         = 'entryPoint' ~ entryPoint:id_base
-                        | 'exitPoint'  ~ exitPoint:id_base
+submachine_entrypoint   = 'entryPoint' ~ @:id_base
                         ;
-transition              = local_transition:local_transition
-                        | external_transition:external_transition
-                        | internal_transition:internal_transition
+submachine_exitpoint    = 'exitPoint' ~ @:id_base
                         ;
-internal_transition     = 'self' ~ trigger_decl
+transition              = local_transition
+                        | external_transition
+                        | internal_transition
                         ;
-local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger_decl]
-                        | src:id          '->' target:'final' ~ [guard:guard_decl] [trigger:trigger_decl]
+internal_transition     = 'self' ~ trigger:trigger_list [guard:guard_decl] [effect:effect_decl]
                         ;
-external_transition     = src:id '->' target:id [trigger:trigger_decl]
+local_transition        = src:'initial' ~ '->' target:id        [trigger:trigger_list] [guard:guard_decl] [effect:effect_decl]
+                        | src:id_base     '->' target:'final' ~ [trigger:trigger_list] [guard:guard_decl] [effect:effect_decl]
                         ;
-trigger_decl            = ':' trigger:trigger_expr {',' trigger:trigger_expr}* [guard:guard_decl] [effect:effect_decl]
+external_transition     = src:id          '->' target:id        [trigger:trigger_list] [guard:guard_decl] [effect:effect_decl]
+                        ;
+trigger_list            = ':' name:trigger_expr {',' name:trigger_expr}
                         ;
 behavior                = kind:('entry'|'exit'|'do') ~ effect:effect_decl
                         ;
-guard_decl              = '?' '[' @:guard_expr ']'
+guard_decl              = '?' '[' ~ @:guard_expr ']'
                         ;
 effect_decl             = '/' @:expr
                         ;
 
 (* Tokens & Expressions *)
-id                      = ['::'] @:id_sub
+id                      = ['::'] @:id_main
                         ;
-id_sub                  = name:id_base {(region:id_region)|(scope:id_scope)}* ['.' conn_point:id_base]
+id_main                 = name:id_base {(region:id_region)|(scope:id_scope)} ['.' conn_point:id_base]
                         ;
-id_region               = '['  @:id_sub ']'
+id_region               = '[' ~  @:id_main ']'
                         ;
-id_scope                = '::' @:id_sub
+id_scope                = '::' ~ @:id_main
                         ;
-
+id_submachine           = state:id_base ':' ~ submachine:id_base
+                        ;
 @name
 id_base                 = /\w+/
                         ;
