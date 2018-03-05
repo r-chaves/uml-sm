@@ -1,1 +1,26 @@
+# Compiled python modules.
+*.pyc
+
+# Setuptools distribution directory.
+/dist/
+
+# Python egg metadata, regenerated from source files by setuptools.
+*.egg-info
+*.egg
+.eggs/
+
+# Build files.
+/build/
+
+# Visual Studio Code metadata.
+/.vscode/
+
+# tox and other test metadata.
+.tox/
+.pytest*/
+.mypy*/
+/test-results/
+.coverage
+
+# Python virtual environments.
 py2env/
