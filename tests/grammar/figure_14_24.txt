@@ -1,0 +1,15 @@
+stm uml_figure_14_24
+{
+    state State0
+    state State1
+    state State2
+    state State3
+    state State4
+    junction j1
+
+    State0 -> j1 : e2 ? [b < 0]
+    State1 -> j1 : e1 ? [b < 0]
+    j1 -> State2 ? [a < 0]
+    j1 -> State3 ? [a = 5]
+    j1 -> State4 ? [a > 7]
+}

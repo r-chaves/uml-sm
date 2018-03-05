@@ -1,0 +1,127 @@
+{
+  "stm_name": "uml_figure_14_23", 
+  "region_member": [
+    {
+      "src": "initial", 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": "entry1", 
+        "name": "SComp"
+      }, 
+      "effect": null
+    }, 
+    {
+      "region_member": [
+        {
+          "fork": null, 
+          "join": null, 
+          "target": null, 
+          "deepHistory": null, 
+          "terminate": null, 
+          "effect": null, 
+          "choice": null, 
+          "shallowHistory": null, 
+          "entrypoint": {
+            "guard": null, 
+            "name": "entry1", 
+            "effect": null, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Sin"
+            }
+          }, 
+          "junction": null, 
+          "exitpoint": null
+        }, 
+        {
+          "fork": null, 
+          "join": null, 
+          "target": null, 
+          "deepHistory": null, 
+          "terminate": null, 
+          "effect": null, 
+          "choice": null, 
+          "shallowHistory": null, 
+          "entrypoint": null, 
+          "junction": null, 
+          "exitpoint": {
+            "guard": null, 
+            "name": "exitA", 
+            "effect": null, 
+            "target": null
+          }
+        }, 
+        {
+          "fork": null, 
+          "join": null, 
+          "target": null, 
+          "deepHistory": null, 
+          "terminate": null, 
+          "effect": null, 
+          "choice": null, 
+          "shallowHistory": null, 
+          "entrypoint": null, 
+          "junction": null, 
+          "exitpoint": {
+            "guard": null, 
+            "name": "exitB", 
+            "effect": null, 
+            "target": null
+          }
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Sin", 
+          "behavior": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Sin"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "trA"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "exitA"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Sin"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "trB"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "exitB"
+          }, 
+          "effect": null
+        }
+      ], 
+      "region": null, 
+      "name": "SComp", 
+      "behavior": null
+    }
+  ]
+}

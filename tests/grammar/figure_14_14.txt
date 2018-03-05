@@ -1,0 +1,17 @@
+stm uml_figure_14_14
+{
+    initial -> verifyCard
+    state verifyCard
+    submachine readAmount:ReadAmountSM
+    {
+        exitPoint aborted
+    }
+
+    readAmount.aborted -> CardReleased
+    state CardReleased
+    readAmount -> outOfService / outOfService
+    readAmount -> verifyTransaction
+    state outOfService
+    state verifyTransaction
+    verifyTransaction -> CardReleased / releaseCard
+}

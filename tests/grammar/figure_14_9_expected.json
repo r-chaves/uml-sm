@@ -1,0 +1,179 @@
+{
+  "stm_name": "uml_figure_14_9", 
+  "region_member": {
+    "region_member": [
+      {
+        "src": "initial", 
+        "guard": null, 
+        "trigger": null, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Studying"
+        }, 
+        "effect": null
+      }, 
+      {
+        "region_member": null, 
+        "region": [
+          {
+            "region_member": [
+              {
+                "src": "initial", 
+                "guard": null, 
+                "trigger": null, 
+                "target": {
+                  "scope": null, 
+                  "region": null, 
+                  "conn_point": null, 
+                  "name": "Lab1"
+                }, 
+                "effect": null
+              }, 
+              {
+                "region_member": null, 
+                "region": null, 
+                "name": "Lab1", 
+                "behavior": null
+              }, 
+              {
+                "src": {
+                  "scope": null, 
+                  "region": null, 
+                  "conn_point": null, 
+                  "name": "Lab1"
+                }, 
+                "guard": null, 
+                "trigger": {
+                  "name": "lab_done"
+                }, 
+                "target": {
+                  "scope": null, 
+                  "region": null, 
+                  "conn_point": null, 
+                  "name": "Lab2"
+                }, 
+                "effect": null
+              }, 
+              {
+                "region_member": null, 
+                "region": null, 
+                "name": "Lab2", 
+                "behavior": null
+              }, 
+              {
+                "src": "Lab2", 
+                "guard": null, 
+                "trigger": {
+                  "name": "lab_done"
+                }, 
+                "target": "final", 
+                "effect": null
+              }
+            ], 
+            "name": "Lab"
+          }, 
+          {
+            "region_member": [
+              {
+                "src": "Term_Project", 
+                "guard": null, 
+                "trigger": {
+                  "name": "project_done"
+                }, 
+                "target": "final", 
+                "effect": null
+              }, 
+              {
+                "region_member": null, 
+                "region": null, 
+                "name": "Term_Project", 
+                "behavior": null
+              }
+            ], 
+            "name": "Term"
+          }, 
+          {
+            "region_member": [
+              {
+                "region_member": null, 
+                "region": null, 
+                "name": "Final_Test", 
+                "behavior": null
+              }, 
+              {
+                "src": "Final_Test", 
+                "guard": null, 
+                "trigger": {
+                  "name": "pass"
+                }, 
+                "target": "final", 
+                "effect": null
+              }, 
+              {
+                "src": {
+                  "scope": null, 
+                  "region": null, 
+                  "conn_point": null, 
+                  "name": "Final_Test"
+                }, 
+                "guard": null, 
+                "trigger": {
+                  "name": "fail"
+                }, 
+                "target": {
+                  "scope": {
+                    "scope": null, 
+                    "region": null, 
+                    "conn_point": null, 
+                    "name": "Failed"
+                  }, 
+                  "region": null, 
+                  "conn_point": null, 
+                  "name": "CourseAttempt"
+                }, 
+                "effect": null
+              }
+            ], 
+            "name": "Final"
+          }
+        ], 
+        "name": "Studying", 
+        "behavior": null
+      }, 
+      {
+        "region_member": null, 
+        "region": null, 
+        "name": "Failed", 
+        "behavior": null
+      }, 
+      {
+        "region_member": null, 
+        "region": null, 
+        "name": "Passed", 
+        "behavior": null
+      }, 
+      {
+        "src": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Studying"
+        }, 
+        "guard": null, 
+        "trigger": null, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Passed"
+        }, 
+        "effect": null
+      }
+    ], 
+    "region": null, 
+    "name": "CourseAttempt", 
+    "behavior": null
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "stm_name": "uml_figure_14_36", 
+  "region_member": [
+    {
+      "fork": null, 
+      "join": null, 
+      "target": null, 
+      "deepHistory": null, 
+      "terminate": null, 
+      "effect": null, 
+      "choice": null, 
+      "shallowHistory": null, 
+      "entrypoint": {
+        "guard": null, 
+        "name": "activeEntry", 
+        "effect": null, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Active"
+        }
+      }, 
+      "junction": null, 
+      "exitpoint": null
+    }, 
+    {
+      "fork": null, 
+      "join": null, 
+      "target": null, 
+      "deepHistory": null, 
+      "terminate": "aborted", 
+      "effect": null, 
+      "choice": null, 
+      "shallowHistory": null, 
+      "entrypoint": null, 
+      "junction": null, 
+      "exitpoint": null
+    }, 
+    {
+      "src": "initial", 
+      "guard": null, 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Idle"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Idle"
+      }, 
+      "guard": null, 
+      "trigger": {
+        "name": "lift receiver "
+      }, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Active"
+      }, 
+      "effect": "get dial tone"
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Active"
+      }, 
+      "guard": null, 
+      "trigger": {
+        "name": "caller hangs up "
+      }, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Idle"
+      }, 
+      "effect": "disconnect"
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "Active"
+      }, 
+      "guard": null, 
+      "trigger": {
+        "name": "abort"
+      }, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "aborted"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": "Active", 
+      "guard": null, 
+      "trigger": {
+        "name": "terminate"
+      }, 
+      "target": "final", 
+      "effect": null
+    }, 
+    {
+      "region_member": [
+        {
+          "src": "initial", 
+          "guard": null, 
+          "trigger": null, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "DialTone"
+          }, 
+          "effect": null
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "DialTone", 
+          "behavior": {
+            "kind": "do", 
+            "effect": "play dial tone"
+          }
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Time-out", 
+          "behavior": {
+            "kind": "do", 
+            "effect": "play message"
+          }
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Dialing", 
+          "behavior": null
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Invalid", 
+          "behavior": {
+            "kind": "do", 
+            "effect": "play message"
+          }
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Connecting", 
+          "behavior": null
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Busy", 
+          "behavior": {
+            "kind": "do", 
+            "effect": "play busy tone"
+          }
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Pinned", 
+          "behavior": null
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Talking", 
+          "behavior": null
+        }, 
+        {
+          "region_member": null, 
+          "region": null, 
+          "name": "Ringing", 
+          "behavior": {
+            "kind": "do", 
+            "effect": "play ringing tone"
+          }
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "DialTone"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "after (15 sec.)"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Time-out"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "DialTone"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "dial digit(n)"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "after (15 sec.)"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Time-out"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "guard": "incomplete", 
+          "trigger": {
+            "name": "dial digit(n) "
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "guard": "invalid", 
+          "trigger": {
+            "name": "dial digit(n) "
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Invalid"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Dialing"
+          }, 
+          "guard": "valid", 
+          "trigger": {
+            "name": "dial digit(n) "
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Connecting"
+          }, 
+          "effect": "Connecting"
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Connecting"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "busy"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Busy"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Connecting"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "connected"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Ringing"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Ringing"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "callee answers "
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Talking"
+          }, 
+          "effect": "enable speech"
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Talking"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "callee hangs up"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Pinned"
+          }, 
+          "effect": null
+        }, 
+        {
+          "src": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Pinned"
+          }, 
+          "guard": null, 
+          "trigger": {
+            "name": "callee answers"
+          }, 
+          "target": {
+            "scope": null, 
+            "region": null, 
+            "conn_point": null, 
+            "name": "Talking"
+          }, 
+          "effect": null
+        }
+      ], 
+      "region": null, 
+      "name": "Active", 
+      "behavior": null
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "stm_name": "uml_figure_14_7", 
+  "region_member": {
+    "region_member": [
+      {
+        "src": "initial", 
+        "guard": null, 
+        "trigger": null, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Start"
+        }, 
+        "effect": null
+      }, 
+      {
+        "region_member": null, 
+        "region": null, 
+        "name": "Start", 
+        "behavior": [
+          {
+            "kind": "entry", 
+            "effect": "start dial tone"
+          }, 
+          {
+            "kind": "exit", 
+            "effect": "stop dial tone"
+          }
+        ]
+      }, 
+      {
+        "src": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Start"
+        }, 
+        "guard": null, 
+        "trigger": {
+          "name": "digit(n)"
+        }, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Partial_Dial"
+        }, 
+        "effect": null
+      }, 
+      {
+        "region_member": null, 
+        "region": null, 
+        "name": "Partial_Dial", 
+        "behavior": {
+          "kind": "entry", 
+          "effect": "number.append(n)"
+        }
+      }, 
+      {
+        "src": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Partial_Dial"
+        }, 
+        "guard": null, 
+        "trigger": {
+          "name": "digit(n)"
+        }, 
+        "target": {
+          "scope": null, 
+          "region": null, 
+          "conn_point": null, 
+          "name": "Partial_Dial"
+        }, 
+        "effect": null
+      }, 
+      {
+        "src": "Partial_Dial", 
+        "guard": "number.isValid()", 
+        "trigger": null, 
+        "target": "final", 
+        "effect": null
+      }
+    ], 
+    "region": null, 
+    "name": "Dialing", 
+    "behavior": null
+  }
+}

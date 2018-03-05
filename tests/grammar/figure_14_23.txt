@@ -1,0 +1,14 @@
+stm uml_figure_14_23
+{
+    initial -> SComp.entry1
+
+    state SComp
+    {
+        entryPoint entry1 -> Sin
+        exitPoint exitA
+        exitPoint exitB
+        state Sin
+        Sin -> exitA : trA
+        Sin -> exitB : trB
+    }
+}

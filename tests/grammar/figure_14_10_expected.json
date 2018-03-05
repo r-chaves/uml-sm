@@ -1,0 +1,181 @@
+{
+  "stm_name": "uml_figure_14_10", 
+  "region_member": {
+    "region_member": null, 
+    "region": [
+      {
+        "region_member": [
+          {
+            "src": "initial", 
+            "guard": null, 
+            "trigger": null, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Initial", 
+            "behavior": null
+          }, 
+          {
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "go"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Running", 
+            "behavior": null
+          }, 
+          {
+            "src": "Running", 
+            "guard": null, 
+            "trigger": {
+              "name": "stop"
+            }, 
+            "target": "final", 
+            "effect": null
+          }
+        ], 
+        "name": "one"
+      }, 
+      {
+        "region_member": [
+          {
+            "src": "initial", 
+            "guard": null, 
+            "trigger": null, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Initial", 
+            "behavior": null
+          }, 
+          {
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "go"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Running", 
+            "behavior": null
+          }, 
+          {
+            "src": "Running", 
+            "guard": null, 
+            "trigger": {
+              "name": "stop"
+            }, 
+            "target": "final", 
+            "effect": null
+          }, 
+          {
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Running"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "pause"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Wait"
+            }, 
+            "effect": null
+          }, 
+          {
+            "region_member": null, 
+            "region": null, 
+            "name": "Wait", 
+            "behavior": null
+          }, 
+          {
+            "src": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Wait"
+            }, 
+            "guard": null, 
+            "trigger": {
+              "name": "reset"
+            }, 
+            "target": {
+              "scope": null, 
+              "region": null, 
+              "conn_point": null, 
+              "name": "Initial"
+            }, 
+            "effect": null
+          }
+        ], 
+        "name": "two"
+      }
+    ], 
+    "name": "LightOn", 
+    "behavior": [
+      {
+        "kind": "entry", 
+        "effect": "turn on main light"
+      }, 
+      {
+        "kind": "do", 
+        "effect": "flash secondary light"
+      }, 
+      {
+        "kind": "exit", 
+        "effect": "turn off main light, turn off secondary light"
+      }
+    ]
+  }
+}

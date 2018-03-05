@@ -1,0 +1,137 @@
+{
+  "stm_name": "uml_figure_14_24", 
+  "region_member": [
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "State0", 
+      "behavior": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "State1", 
+      "behavior": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "State2", 
+      "behavior": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "State3", 
+      "behavior": null
+    }, 
+    {
+      "region_member": null, 
+      "region": null, 
+      "name": "State4", 
+      "behavior": null
+    }, 
+    {
+      "fork": null, 
+      "junction": "j1", 
+      "target": null, 
+      "deepHistory": null, 
+      "terminate": null, 
+      "effect": null, 
+      "choice": null, 
+      "shallowHistory": null, 
+      "entrypoint": null, 
+      "join": null, 
+      "exitpoint": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "State0"
+      }, 
+      "guard": "b < 0", 
+      "trigger": {
+        "name": "e2 "
+      }, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "j1"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "State1"
+      }, 
+      "guard": "b < 0", 
+      "trigger": {
+        "name": "e1 "
+      }, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "j1"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "j1"
+      }, 
+      "guard": "a < 0", 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "State2"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "j1"
+      }, 
+      "guard": "a = 5", 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "State3"
+      }, 
+      "effect": null
+    }, 
+    {
+      "src": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "j1"
+      }, 
+      "guard": "a > 7", 
+      "trigger": null, 
+      "target": {
+        "scope": null, 
+        "region": null, 
+        "conn_point": null, 
+        "name": "State4"
+      }, 
+      "effect": null
+    }
+  ]
+}

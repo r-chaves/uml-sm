@@ -1,0 +1,30 @@
+stm uml_figure_14_10
+{
+    state LightOn
+    {
+        entry / turn on main light
+        do / flash secondary light
+        exit / turn off main light, turn off secondary light
+
+        region one
+        {
+            initial -> Initial
+            state Initial
+            Initial -> Running : go
+            state Running
+            Running -> final : stop
+        }
+
+        region two
+        {
+            initial -> Initial
+            state Initial
+            Initial -> Running : go
+            state Running
+            Running -> final : stop
+            Running -> Wait : pause
+            state Wait
+            Wait -> Initial : reset
+        }
+    }
+}
